@@ -1,0 +1,6 @@
+#Blank config file. Please fill out parameters and rename file to config.properties
+ACCOUNT_SID=""
+AUTH_TOKEN=""
+FROM_NUMBER=""
+TO_NUMBER=""
+weatherAPIkey=""

@@ -106,3 +106,7 @@ buildNumber.properties
 .mvn/timing.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
+
+
+/src/resources/config.properties
+!/src/resources/config.properties.template

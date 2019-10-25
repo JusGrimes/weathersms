@@ -1,18 +1,25 @@
 package info.justinrimes;
 
-
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 
-public class SmsSender implements Sender {
-    private final String ACCOUNT_SID =
-            System.getenv("ACCOUNT_SID");
-    private final String AUTH_TOKEN =
-            System.getenv("AUTH_TOKEN");
-    private final String toNumber = System.getenv("TO_NUMBER");
-    private final String fromNumber = System.getenv("PHONE_NUMBER");
+import java.util.Properties;
 
+public class SmsSender implements Sender {
+    private final String ACCOUNT_SID;
+    private final String AUTH_TOKEN;
+    private final String toNumber;
+    private final String fromNumber;
+
+    SmsSender(Properties config) {
+        ACCOUNT_SID = config.getProperty("ACCOUNT_SID");
+        AUTH_TOKEN = config.getProperty("AUTH_TOKEN");
+        toNumber = config.getProperty("TO_NUMBER");
+        fromNumber = config.getProperty("FROM_NUMBER");
+    }
+
+    @Override
     public void sendMessage(String msg) {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message.creator(
