@@ -2,6 +2,8 @@ package info.justingrimes;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.net.URI;
@@ -12,6 +14,8 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Properties;
 
 public class WeatherGatherer implements Gatherer {
+    final static private Logger log = LogManager.getLogger(WeatherGatherer.class);
+
     final private String cityName;
     final private String apiKey;
     final private String baseURL = "http://api.openweathermap.org/data/2.5/weather";
@@ -19,6 +23,7 @@ public class WeatherGatherer implements Gatherer {
     WeatherGatherer(String cityName, Properties config) {
         apiKey = config.getProperty("weatherAPIkey");
         this.cityName = cityName;
+        log.debug("Weather Gatherer Object created");
     }
 
     @Override
@@ -28,7 +33,7 @@ public class WeatherGatherer implements Gatherer {
         try {
             temperature = convertJsonResponseToTemp(getTempString());
         } catch (IOException | InterruptedException e) {
-            System.out.println("Error getting temperature");
+            log.error("Error while getting temperature", e);
             return "Unable to get temperature";
         }
         return "The current temperature is " + temperature + " degrees.";
