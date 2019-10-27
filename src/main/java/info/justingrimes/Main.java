@@ -15,14 +15,16 @@ public class Main {
         Properties config = new Properties();
         try (InputStream in = new FileInputStream(filePath)) {
             config.load(in);
+            Gatherer weatherGatherer = new WeatherGatherer("Dallas", config);
+            Sender smsSender= new SmsSender(config);
+
+
+            smsSender.sendMessage(weatherGatherer.getMessage());
         } catch (IOException e) {
             System.out.println("Could not find file: " + propFilename);
+            System.out.println("Please use " + propFilename + ".template as a template for filling out "
+                    + propFilename + " and put it ");
         }
-        Gatherer weatherGatherer = new WeatherGatherer("Dallas", config);
-        Sender smsSender= new SmsSender(config);
-
-
-        smsSender.sendMessage(weatherGatherer.getMessage());
 
     }
 }
