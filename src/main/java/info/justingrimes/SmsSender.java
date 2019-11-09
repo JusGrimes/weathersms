@@ -17,12 +17,12 @@ public class SmsSender implements Sender {
     private final String toNumber;
     private final String fromNumber;
 
-    SmsSender(Properties config) {
-        ACCOUNT_SID = config.getProperty("ACCOUNT_SID");
-        AUTH_TOKEN = config.getProperty("AUTH_TOKEN");
-        toNumber = config.getProperty("TO_NUMBER");
-        fromNumber = config.getProperty("FROM_NUMBER");
+    SmsSender(String ACCOUNT_SID, String AUTH_TOKEN, String toNumber, String fromNumber) {
 
+        this.ACCOUNT_SID = ACCOUNT_SID;
+        this.AUTH_TOKEN = AUTH_TOKEN;
+        this.toNumber = toNumber;
+        this.fromNumber = fromNumber;
         log.debug("SMS Sender created");
     }
 
