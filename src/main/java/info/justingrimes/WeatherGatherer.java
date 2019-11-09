@@ -20,8 +20,8 @@ public class WeatherGatherer implements Gatherer {
     final private String apiKey;
     final private String baseURL = "http://api.openweathermap.org/data/2.5/weather";
 
-    WeatherGatherer(String cityName, Properties config) {
-        apiKey = config.getProperty("weatherAPIkey");
+    WeatherGatherer(String cityName, String apiKey) {
+        this.apiKey = apiKey;
         this.cityName = cityName;
         log.debug("Weather Gatherer Object created");
     }
