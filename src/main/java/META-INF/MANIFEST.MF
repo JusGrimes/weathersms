@@ -1,3 +1,0 @@
-anifest-Version: 1.0
-Main-Class: info.justingrimes.Main
-
