@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder location="file:config.properties" />
+    <bean id="weatherGatherer" class="info.justingrimes.WeatherGatherer">
+        <constructor-arg index="0" value="Dallas"/>
+        <constructor-arg index="1" value="${weather.APIkey}"/>
+    </bean>
+
+    <bean id="smsSender" class="info.justingrimes.SmsSender">
+
+        <constructor-arg index="0" value="${twilio.ACCOUNT_SID}"/>
+        <constructor-arg index="1" value="${twilio.AUTH_TOKEN}"/>
+        <constructor-arg index="2" value="${twilio.TO_NUMBER}"/>
+        <constructor-arg index="3" value="${twilio.FROM_NUMBER}"/>
+    </bean>
+</beans>
